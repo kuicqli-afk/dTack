@@ -1,0 +1,237 @@
+/* =========================================================
+   LOGIN & OTP STYLES - MODERN ENTERPRISE THEME
+   ========================================================= */
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #0b0f19;
+  padding: 16px;
+  color: #f9fafb;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 20px;
+  padding: 36px 28px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =========================================================
+   HEADER SECTION
+   ========================================================= */
+
+.login-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-icon {
+  font-size: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.login-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #f9fafb;
+  margin: 0;
+}
+
+.login-header p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.edit-phone-btn {
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: color 0.2s ease;
+}
+
+.edit-phone-btn:hover {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   FORM & INPUTS
+   ========================================================= */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #0b0f19;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 4px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phone-input-wrapper:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.country-code {
+  font-size: 15px;
+  font-weight: 600;
+  color: #94a3b8;
+  padding-right: 12px;
+  border-right: 1px solid #374151;
+}
+
+.phone-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f9fafb;
+  font-size: 15px;
+  padding: 10px 10px;
+}
+
+.phone-input::placeholder {
+  color: #6b7280;
+}
+
+/* =========================================================
+   OTP 4-DIGIT INPUTS
+   ========================================================= */
+
+.otp-input-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.otp-input {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #f9fafb;
+  background: #0b0f19;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.otp-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* =========================================================
+   BUTTONS & ERRORS
+   ========================================================= */
+
+.login-form button[type="submit"] {
+  width: 100%;
+  background: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  margin-top: 4px;
+}
+
+.login-form button[type="submit"]:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.login-form button[type="submit"]:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.login-form button[type="submit"]:disabled {
+  background: #374151;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.login-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* =========================================================
+   RESEND & FOOTER
+   ========================================================= */
+
+.resend-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.resend-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.resend-btn:hover:not(:disabled) {
+  color: #f9fafb;
+}
+
+.resend-btn:disabled {
+  color: #4b5563;
+  cursor: not-allowed;
+}
+
+.login-footer {
+  text-align: center;
+  border-top: 1px solid #1f2937;
+  padding-top: 16px;
+}
+
+.login-hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}

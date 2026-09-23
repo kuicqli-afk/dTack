@@ -1,0 +1,378 @@
+/* frontend/src/components/Profile/ProfileSetup.css */
+
+.kuicqli-profile-container {
+  width: 100%;
+  height: 100%;
+  background-color: transparent !important; /* Parent container ka background lega */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.kuicqli-profile-pane {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-pane) !important;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.kuicqli-profile-container.dark-theme {
+  --bg-primary: #0f172a;
+  --bg-pane: #1e293b;
+  --bg-header: #1e293b;
+  --bg-hover: #334155;
+  --border-color: #334155;
+  --border-subtle: #273549;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #cbd5e1;
+  --input-bg: #0f172a;
+  --input-border: #475569;
+  --accent-color: #38bdf8;
+
+  --alert-success-bg: rgba(22, 163, 74, 0.15);
+  --alert-success-color: #4ade80;
+  --alert-success-border: rgba(22, 163, 74, 0.3);
+  --alert-error-bg: rgba(220, 38, 38, 0.15);
+  --alert-error-color: #f87171;
+  --alert-error-border: rgba(220, 38, 38, 0.3);
+
+  --btn-save-bg: rgba(22, 163, 74, 0.2);
+  --btn-save-color: #4ade80;
+  --btn-save-hover: rgba(22, 163, 74, 0.35);
+  --btn-cancel-bg: rgba(220, 38, 38, 0.2);
+  --btn-cancel-color: #f87171;
+  --btn-cancel-hover: rgba(220, 38, 38, 0.35);
+}
+
+.kuicqli-profile-pane {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-pane);
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.kuicqli-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-header);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.kuicqli-back-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.kuicqli-back-btn:hover {
+  background: var(--bg-hover);
+}
+
+.kuicqli-pane-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.kuicqli-alert {
+  padding: 12px 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.kuicqli-alert.error {
+  background-color: var(--alert-error-bg);
+  color: var(--alert-error-color);
+  border-bottom: 1px solid var(--alert-error-border);
+}
+
+.kuicqli-alert.success {
+  background-color: var(--alert-success-bg);
+  color: var(--alert-success-color);
+  border-bottom: 1px solid var(--alert-success-border);
+}
+
+.kuicqli-profile-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Avatar Section */
+.kuicqli-avatar-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.kuicqli-avatar-preview {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-hover);
+  transition: border-color 0.2s;
+}
+
+.kuicqli-avatar-preview:hover {
+  border-color: var(--accent-color);
+}
+
+.kuicqli-avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kuicqli-avatar-initials {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.kuicqli-avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  text-align: center;
+  padding: 8px;
+}
+
+.kuicqli-avatar-preview:hover .kuicqli-avatar-overlay {
+  opacity: 1;
+}
+
+.kuicqli-avatar-overlay span {
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+/* Field Groups */
+.kuicqli-profile-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.kuicqli-field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.kuicqli-field-value-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+}
+
+.kuicqli-field-text {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.kuicqli-edit-pencil-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.kuicqli-edit-pencil-btn:hover {
+  background: var(--bg-hover);
+}
+
+/* Inline Edit Box */
+.kuicqli-inline-edit-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.kuicqli-inline-edit-box input {
+  flex: 1;
+  padding: 8px 12px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.kuicqli-inline-edit-box input:focus {
+  border-color: var(--accent-color);
+}
+
+.kuicqli-edit-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.kuicqli-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+.kuicqli-icon-btn.save {
+  background-color: var(--btn-save-bg);
+  color: var(--btn-save-color);
+}
+
+.kuicqli-icon-btn.save:hover {
+  background-color: var(--btn-save-hover);
+}
+
+.kuicqli-icon-btn.cancel {
+  background-color: var(--btn-cancel-bg);
+  color: var(--btn-cancel-color);
+}
+
+.kuicqli-icon-btn.cancel:hover {
+  background-color: var(--btn-cancel-hover);
+}
+
+/* Phone Row */
+.phone-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.phone-display-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone-icon {
+  font-size: 16px;
+}
+
+.kuicqli-copy-btn {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+.kuicqli-copy-btn:hover {
+  opacity: 0.8;
+}
+/* ================= RESPONSIVE MEDIA QUERIES FOR PROFILE SETUP ================= */
+
+/* Tablet & Mobile Screens (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .kuicqli-pane-header {
+    padding: 14px 16px;
+  }
+
+  .kuicqli-profile-content {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .kuicqli-pane-header h2 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small Mobile Phones (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .kuicqli-avatar-preview {
+    width: 84px;
+    height: 84px;
+  }
+
+  .kuicqli-avatar-initials {
+    font-size: 1.8rem;
+  }
+
+  .kuicqli-pane-header {
+    padding: 12px 14px;
+  }
+
+  .kuicqli-profile-content {
+    padding: 12px;
+    gap: 14px;
+  }
+
+  .kuicqli-field-text, 
+  .kuicqli-inline-edit-box input {
+    font-size: 0.9rem;
+  }
+
+  /* Inline edit actions aur buttons chote phones par neatly fit hon */
+  .kuicqli-inline-edit-box {
+    flex-wrap: wrap;
+  }
+}

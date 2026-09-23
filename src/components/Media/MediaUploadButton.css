@@ -1,0 +1,26 @@
+/* MediaUploadButton.css */
+.media-upload-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: #f0edff;
+  color: #6C63FF;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.media-upload-btn:hover:not(:disabled) {
+  background: #e0d9ff;
+  transform: scale(1.05);
+}
+
+.media-upload-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

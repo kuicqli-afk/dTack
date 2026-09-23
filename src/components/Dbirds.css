@@ -1,0 +1,826 @@
+/* frontend/src/components/Dbirds.css */
+
+.db-workspace-shell {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.db-brand-logo img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Theme: Obsidian Dark */
+.db-workspace-shell.theme-dark {
+  --bg-rail: #0f1117;
+  --bg-sidebar: #161b22;
+  --bg-main: #0d1117;
+  --bg-stage: #0d1117;
+  --bg-card: #21262d;
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --border-color: #30363d;
+  --accent-color: #238636;
+  --accent-primary: #238636;
+  --accent-primary-hover: #2ea443;
+  --hover-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* Theme: Crisp Light */
+.db-workspace-shell.theme-light {
+  --bg-rail: #f6f8fa;
+  --bg-sidebar: #ffffff;
+  --bg-main: #f0f2f5;
+  --bg-stage: #e1e4e8;
+  --bg-card: #f6f8fa;
+  --text-primary: #24292e;
+  --text-secondary: #586069;
+  --border-color: #e1e4e8;
+  --accent-color: #2ea443;
+  --accent-primary: #2ea443;
+  --accent-primary-hover: #3fb950;
+  --hover-bg: rgba(0, 0, 0, 0.06);
+}
+
+/* 1. Sleek SaaS Workspace Rail (Leftmost) */
+.db-workspace-rail {
+  width: 72px;
+  background-color: var(--bg-rail);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  z-index: 10;
+  height: 100%;
+}
+
+/* Parent containers ka size aur padding completely khol dein */
+.db-workspace-brand,
+.db-brand-logo {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Image ki height aur width yahan se jitni marzi utni badi karein */
+.brand-logo-img {
+  width: 44px !important;
+  /* Agar aur bada chahiye toh 70px ya 80px kar sakte hain */
+  height: 44px !important;
+  object-fit: contain !important;
+  display: block !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Rail Top / Nav & Footer Grouping */
+.db-rail-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+/* .db-rail-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+} */
+
+.db-rail-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Nav Item Styling */
+.db-nav-item {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.db-nav-item span {
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.db-nav-item:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.db-nav-item.active {
+  background-color: var(--hover-bg);
+  color: var(--accent-primary);
+}
+
+/* User Avatar Pill */
+.db-user-pill {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.db-user-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 2. Secondary Inbox / Contacts Column */
+.db-sidebar-panel {
+  width: 320px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+  height: 100%;
+}
+
+.db-sidebar-top {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.db-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.db-workspace-subtitle {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.db-header-row h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.db-action-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--accent-primary);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.db-action-pill-btn:hover {
+  background: var(--accent-primary-hover);
+}
+
+.db-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+
+.db-search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 13px;
+  width: 100%;
+}
+
+.db-search-box input::placeholder {
+  color: var(--text-secondary);
+}
+
+.db-pill-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.db-tab-pill {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.db-tab-pill.active {
+  background: var(--accent-primary);
+  color: #fff;
+  border-color: var(--accent-primary);
+}
+
+.db-sidebar-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.db-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* WhatsApp tarah clean flat list styling */
+.db-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin: 4px 8px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.db-contact-card:hover {
+  background: transparent !important;
+}
+
+.db-contact-card.active {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border-radius: 20px !important;
+}
+
+.db-contact-avatar-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #e9edef;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.db-contact-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.db-contact-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.db-contact-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-contact-time {
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.db-contact-preview {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-contact-preview p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 3. Main Stage */
+.db-main-stage {
+  flex: 1;
+  background-color: var(--bg-stage);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.db-stage-card-empty {
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.db-stage-card-empty h3 {
+  color: var(--text-primary);
+  margin: 12px 0 6px 0;
+  font-size: 1.1rem;
+}
+
+.db-welcome-card {
+  max-width: 480px;
+  width: 100%;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.db-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.12);
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.db-welcome-card h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: var(--text-primary);
+}
+
+.db-welcome-card p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.db-welcome-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.db-btn-primary {
+  background: var(--accent-primary);
+  color: #fff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+
+.db-btn-primary:hover {
+  background: var(--accent-primary-hover);
+}
+
+.db-btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+
+.db-btn-outline:hover {
+  background: var(--bg-card);
+}
+
+/* Settings & Profile Cards */
+.db-profile-header-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.db-avatar-lg {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+background-color: #1e293b !important; /* Jo color aapko pasand ho (jaise dark slate) */
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.db-avatar-lg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.db-user-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.db-username {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.db-userbio {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+
+.db-menu-list {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.db-menu-card-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.db-data-card-item:hover,
+.db-menu-card-item:hover {
+  background: var(--bg-card);
+}
+
+.db-menu-icon {
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.db-menu-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.db-menu-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.db-menu-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.db-menu-card-item.logout .db-menu-icon {
+  color: #ef4444;
+}
+
+.db-menu-card-item.logout .db-menu-title {
+  color: #ef4444;
+}
+
+/* Settings Sub-Pane & Cards */
+.db-sub-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.db-sub-pane-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.db-sub-pane-header button {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.db-sub-pane-header h2 {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.db-sub-pane-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.db-setting-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.db-setting-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.db-setting-card p {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.db-setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-color);
+  font-size: 12.5px;
+  color: var(--text-primary);
+}
+
+.db-setting-row select {
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* Form Drawer */
+.db-form-drawer-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.db-drawer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.db-drawer-top h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.db-drawer-top button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.db-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.db-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.db-field label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.db-field input,
+.db-field select {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+.db-phone-group {
+  display: flex;
+  gap: 8px;
+}
+
+.db-phone-group select {
+  width: 110px;
+}
+
+.db-checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.db-empty-state {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.spin {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.db-contact-phone {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #8f96a3;
+}
+
+.db-contact-phone svg {
+  flex-shrink: 0;
+}
+
+/* ================= CHAT USER STATUS ================= */
+
+.db-chat-user-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Blue verified badge */
+.verified-badge {
+  color: #1877f2;
+  fill: #1877f2;
+  stroke: white;
+  flex-shrink: 0;
+}
+
+/* Online status */
+.db-online-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #22c55e;
+}
+
+/* Green online dot */
+.db-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Typing status */
+.db-typing-status {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #22c55e;
+}
+
+@media screen and (max-width: 768px) {
+
+  /* Jab chat open ho, toh sidebar ko hide kar dein agar wo flex mein hain */
+  .dbirds-sidebar {
+    display: none;
+    /* Jab mobile par chat open ho */
+  }
+
+  .dbirds-sidebar.hidden-mobile {
+    display: none;
+  }
+
+  .db-chat-window-shell {
+    width: 100% !important;
+  }
+}

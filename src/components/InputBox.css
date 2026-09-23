@@ -1,0 +1,125 @@
+/* frontend/src/components/InputBox.css */
+
+.db-input-box-wrapper {
+  position: relative;
+  background-color: var(--bg-sidebar, #161b22);
+  border-top: 1px solid var(--border-color, #30363d);
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Emoji Picker Dropdown */
+.db-emoji-picker-dropdown {
+  position: absolute;
+  bottom: 74px;
+  left: 16px;
+  width: 330px;
+  background-color: var(--bg-card, #21262d);
+  border: 1px solid var(--border-color, #30363d);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+  padding: 10px;
+  z-index: 100;
+}
+
+.db-emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+}
+
+.db-emoji-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.15rem;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.db-emoji-btn:hover {
+  background-color: var(--hover-bg, rgba(255, 255, 255, 0.08));
+}
+
+/* Form & Pill Container */
+.db-input-box-form {
+  width: 100%;
+}
+
+.db-input-pill-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-card, #21262d);
+  border: 1px solid var(--border-color, #30363d);
+  border-radius: 24px;
+  padding: 6px 12px;
+  gap: 8px;
+  transition: border-color 0.15s ease;
+}
+
+.db-input-pill-container:focus-within {
+  border-color: var(--accent-primary, #238636);
+}
+
+/* Inline Icons / Buttons */
+.db-inline-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary, #8b949e);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.db-inline-icon-btn:hover {
+  color: var(--text-primary, #f0f6fc);
+  background-color: var(--hover-bg, rgba(255, 255, 255, 0.08));
+}
+
+.db-message-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary, #f0f6fc);
+  font-size: 0.93rem;
+  padding: 6px 4px;
+}
+
+.db-message-input::placeholder {
+  color: var(--text-secondary, #8b949e);
+}
+
+.db-send-action-btn {
+  background-color: var(--accent-primary, #238636) !important;
+  color: #ffffff !important;
+  width: 36px;
+  height: 36px;
+}
+
+.db-send-action-btn:hover {
+  opacity: 0.9;
+}
+
+.db-mic-trigger.db-listening {
+  color: #f85149;
+  animation: dbPulseMic 1.2s infinite ease-in-out;
+}
+
+@keyframes dbPulseMic {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}

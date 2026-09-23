@@ -1,0 +1,79 @@
+/* frontend/src/components/QRLogin.css */
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.qr-code-wrapper {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  min-height: 240px;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-code-wrapper svg {
+  display: block;
+}
+
+.qr-hint {
+  color: #636e72;
+  font-size: 14px;
+  margin: 0;
+}
+
+.qr-refresh {
+  background: #6C63FF;
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.qr-refresh:hover {
+  background: #4834d4;
+  transform: scale(1.02);
+}
+
+.qr-status {
+  font-size: 13px;
+  color: #4ECDC4;
+  font-weight: 500;
+}
+
+/* Connected */
+.qr-connected {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.check {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.qr-connected h3 {
+  color: #4ECDC4;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.qr-connected p {
+  color: #636e72;
+}
+
+.qr-placeholder {
+  font-size: 40px;
+  color: #ccc;
+}

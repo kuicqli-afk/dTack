@@ -1,0 +1,358 @@
+/* frontend/src/components/Message.css */
+
+.msg {
+  position: relative;
+  display: flex;
+  margin-bottom: 8px;
+  max-width: 85%;
+  width: fit-content;
+  overflow: visible !important;
+}
+
+@media screen and (max-width: 480px) {
+  .msg {
+    max-width: 90%;
+  }
+  .media-img {
+    max-width: 220px;
+    max-height: 220px;
+  }
+}
+
+.msg.user-msg {
+  margin-left: auto;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.msg.other-msg {
+  margin-right: auto;
+  align-items: flex-start;
+}
+
+/* ================= BUBBLE STYLES ================= */
+.bubble {
+  padding: 6px 10px 8px 10px;
+  border-radius: 7.5px;
+  position: relative;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+  word-break: break-word;
+  font-size: 14.2px;
+  line-height: 19px;
+}
+
+/* Light Theme Bubbles */
+.bubble-user {
+  background-color: #d9fdd3;
+  color: #111b21;
+  border-top-right-radius: 0;
+}
+
+.bubble-other {
+  background-color: #ffffff;
+  color: #111b21;
+  border-top-left-radius: 0;
+}
+
+/* Dark Theme Bubbles */
+.dark-theme .bubble-user {
+  background-color: #005c4b !important;
+  color: #e9edef !important;
+}
+
+.dark-theme .bubble-other {
+  background-color: #202c33 !important;
+  color: #e9edef !important;
+}
+
+/* ================= REPLY PREVIEW IN BUBBLE ================= */
+.msg-reply-preview {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 8px;
+  border-left: 3px solid #53bdeb;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.dark-theme .msg-reply-preview {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.reply-preview-sender {
+  font-weight: 600;
+  color: #53bdeb;
+}
+
+.reply-preview-text {
+  color: #54656f;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.dark-theme .reply-preview-text {
+  color: #8696a0 !important;
+}
+
+/* ================= CONTENT ROW ================= */
+.bubble-content-row {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+}
+
+.msg-text {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.media-img {
+  max-width: 280px;
+  max-height: 280px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.media-video, .media-audio {
+  max-width: 280px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.media-doc {
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: inherit;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dark-theme .media-doc {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.uploading-text {
+  font-style: italic;
+  color: #667781;
+}
+
+.dark-theme .uploading-text {
+  color: #8696a0;
+}
+
+/* ================= META (TIME & TICKS) ================= */
+.msg-meta {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: #667781;
+  user-select: none;
+  flex-shrink: 0;
+  margin-bottom: -1px;
+}
+
+.dark-theme .msg-meta {
+  color: #8696a0 !important;
+}
+
+.msg-time {
+  line-height: 1;
+}
+
+.msg-tick {
+  display: inline-flex;
+}
+
+.tick-read {
+  color: blue;
+}
+
+/* ================= REACTIONS ================= */
+.msg-reactions-list {
+  display: flex;
+  gap: 2px;
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
+  background: #ffffff;
+  padding: 2px 6px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.dark-theme .msg-reactions-list {
+  background: #202c33;
+  color: #e9edef;
+}
+
+.reaction-badge {
+  font-size: 12px;
+}
+
+/* ================= WHATSAPP STYLE CONTEXT MENU ================= */
+.whatsapp-context-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  background: #233138;
+  color: #e9edef;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+  z-index: 99999;
+  min-width: 160px;
+  padding: 6px 0;
+  animation: fadeInMenu 0.15s ease-out;
+}
+
+.user-msg .whatsapp-context-menu {
+  right: 0;
+  left: auto;
+}
+
+.other-msg .whatsapp-context-menu {
+  left: 0;
+  right: auto;
+}
+
+.light-theme .whatsapp-context-menu,
+.db-chat-window-shell:not(.dark-theme) .whatsapp-context-menu {
+  background: #ffffff;
+  color: #111b21;
+  box-shadow: 0 4px 12px rgba(11, 20, 26, 0.25);
+}
+
+.whatsapp-context-menu div {
+  padding: 10px 16px;
+  font-size: 13.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.whatsapp-context-menu div:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.light-theme .whatsapp-context-menu div:hover,
+.db-chat-window-shell:not(.dark-theme) .whatsapp-context-menu div:hover {
+  background: #f0f2f5;
+}
+
+.whatsapp-context-menu .menu-danger {
+  color: #f15c6d;
+}
+
+.whatsapp-context-menu .menu-danger:hover {
+  background: rgba(241, 92, 109, 0.1);
+}
+
+@keyframes fadeInMenu {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* WhatsApp Style Image with Caption Layout */
+.media-with-caption {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 270px; /* Bubble ke andar image ki max width */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.media-img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px 8px 0 0; /* Agar caption ho toh niche ke corners sharp ya clean rahenge */
+}
+
+/* Image ke niche aane wale text/caption ki styling */
+.image-caption {
+  margin: 0 !important;
+  padding: 6px 8px 4px 8px !important;
+  font-size: 14px;
+  word-break: break-word;
+  color: inherit;
+  background: transparent;
+}
+/* WhatsApp Style Image with Caption Layout */
+.media-with-caption {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  max-width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: -3px -5px; /* Bubble ki padding ko balance karne ke liye */
+}
+
+.media-with-caption .media-img {
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+/* Agar image ke sath caption hai toh image ke corners upar se rounded aur niche se sharp honge */
+.media-with-caption:has(.image-caption-text) .media-img {
+  border-radius: 6px 6px 0 0;
+}
+
+.image-caption-text {
+  padding: 6px 8px 4px 8px;
+  font-size: 14px;
+  word-break: break-word;
+  color: inherit;
+  background: transparent;
+}
+
+/* Jab image ho toh bubble ke andar ke content row ko stack karne ke liye */
+.bubble:has(.media-with-caption) .bubble-content-row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+
+/* Image ke sath time/ticks ko right side align karne ke liye */
+.bubble:has(.media-with-caption) .msg-meta {
+  align-self: flex-end;
+  margin-top: -4px;
+  margin-right: 4px;
+  margin-bottom: 2px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 10px;
+  color: #fff !important;
+}
+
+.dark-theme .bubble:has(.media-with-caption) .msg-meta {
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff !important;
+}

@@ -1,0 +1,1407 @@
+
+/* =========================================================
+   frontend/src/components/ChatWindow.css
+   FINAL CSS FOR CURRENT ChatWindow.jsx
+   ========================================================= */
+
+
+/* =========================================================
+   MAIN CHAT WINDOW
+   ========================================================= */
+
+.db-chat-window-shell {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    overflow: hidden;
+
+    background-color: #ffffff;
+    color: #111827;
+
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.db-chat-window-shell *,
+.db-chat-window-shell *::before,
+.db-chat-window-shell *::after {
+    box-sizing: border-box;
+}
+
+
+/* DARK MODE */
+
+.db-chat-window-shell.dark-theme {
+    background-color: #0b141a;
+    color: #e9edef;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.db-chat-header {
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 8px 12px;
+
+    background-color: #f0f2f5;
+    border-bottom: 1px solid #d1d7db;
+
+    position: relative;
+    z-index: 20;
+
+    flex-shrink: 0;
+}
+
+.dark-theme .db-chat-header {
+    background-color: #202c33;
+    border-bottom-color: #222d34;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.db-chat-back-btn {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    margin-right: 5px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #54656f;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.db-chat-back-btn:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: #111827;
+}
+
+.dark-theme .db-chat-back-btn {
+    color: #aebac1;
+}
+
+.dark-theme .db-chat-back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   CONTACT PROFILE
+   ========================================================= */
+
+.db-chat-user-profile {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   AVATAR
+   ========================================================= */
+
+.db-chat-avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: #f97316;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    flex-shrink: 0;
+}
+
+.db-chat-avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.dark-theme .db-chat-avatar {
+    background: #374248;
+    color: #e9edef;
+}
+
+
+/* =========================================================
+   USER META
+   ========================================================= */
+
+.db-chat-user-meta {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   USER NAME
+   ========================================================= */
+
+.db-chat-user-name {
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    min-width: 0;
+
+    color: #1e293b;
+
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.dark-theme .db-chat-user-name {
+    color: #f1f5f9;
+}
+
+
+/* Store name */
+
+.store-name-text {
+    min-width: 0;
+    max-width: 280px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    display: block;
+}
+
+
+/* =========================================================
+   VERIFIED BUSINESS BADGE
+   ========================================================= */
+
+.verified-badge {
+    width: 16px;
+    height: 16px;
+
+    flex-shrink: 0;
+
+    color: #0284c7;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    vertical-align: middle;
+}
+
+.dark-theme .verified-badge {
+    color: #38bdf8;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.db-status-container {
+    min-height: 16px;
+
+    display: flex;
+    align-items: center;
+
+    margin-top: 1px;
+}
+
+
+/* Online */
+
+.db-online-status {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #16a34a;
+
+    font-size: 11px;
+    line-height: 15px;
+    font-weight: 500;
+}
+
+.dark-theme .db-online-status {
+    color: #4ade80;
+}
+
+
+/* Online dot */
+
+.db-online-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background-color: #16a34a;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+}
+
+.dark-theme .db-online-dot {
+    background-color: #22c55e;
+}
+
+
+/* Typing */
+
+.db-typing-status {
+    color: #ea580c;
+
+    font-size: 11px;
+    line-height: 15px;
+
+    font-weight: 500;
+    font-style: italic;
+}
+
+.dark-theme .db-typing-status {
+    color: #fb923c;
+}
+
+
+/* =========================================================
+   HEADER ACTIONS
+   ========================================================= */
+
+.db-chat-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 3px;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+/* Action button */
+
+.db-action-icon-btn {
+    width: 38px;
+    height: 38px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #54656f;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.db-action-icon-btn:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+    color: #111827;
+}
+
+.dark-theme .db-action-icon-btn {
+    color: #aebac1;
+}
+
+.dark-theme .db-action-icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   DROPDOWN MENU
+   ========================================================= */
+
+.db-dropdown-menu {
+    position: absolute;
+
+    top: 43px;
+    right: 0;
+
+    width: 225px;
+
+    padding: 6px 0;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.15);
+
+    z-index: 100;
+
+    overflow: hidden;
+
+    animation: dbDropdownOpen 0.15s ease;
+}
+
+@keyframes dbDropdownOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dark-theme .db-dropdown-menu {
+    background-color: #233138;
+    border-color: #37474f;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Menu item */
+
+.db-menu-item {
+    min-height: 42px;
+
+    padding: 9px 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    color: #111b21;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease;
+}
+
+.db-menu-item svg {
+    width: 16px;
+    height: 16px;
+
+    flex-shrink: 0;
+}
+
+.db-menu-item:hover {
+    background-color: #f5f6f6;
+}
+
+.dark-theme .db-menu-item {
+    color: #d1d7db;
+}
+
+.dark-theme .db-menu-item:hover {
+    background-color: #182229;
+}
+
+
+/* Divider */
+
+.db-menu-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 5px 0;
+
+    background-color: #e9edef;
+}
+
+.dark-theme .db-menu-divider {
+    background-color: #222d34;
+}
+
+
+/* Danger */
+
+.text-danger {
+    color: #ea580c !important;
+}
+
+.dark-theme .text-danger {
+    color: #fb7185 !important;
+}
+
+
+/* =========================================================
+   SEARCH BAR
+   ========================================================= */
+
+.db-chat-search-bar {
+    width: 100%;
+    min-height: 48px;
+
+    padding: 7px 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    background-color: #f0f2f5;
+
+    border-bottom: 1px solid #d1d7db;
+
+    flex-shrink: 0;
+
+    z-index: 15;
+}
+
+.dark-theme .db-chat-search-bar {
+    background-color: #202c33;
+    border-bottom-color: #222d34;
+    color: #aebac1;
+}
+
+
+/* Search icon */
+
+.db-chat-search-bar > svg {
+    flex-shrink: 0;
+    color: #667781;
+}
+
+.dark-theme .db-chat-search-bar > svg {
+    color: #aebac1;
+}
+
+
+/* Search input */
+
+.db-chat-search-bar input {
+    flex: 1;
+    min-width: 0;
+
+    height: 34px;
+
+    padding: 0 10px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 6px;
+
+    background-color: #ffffff;
+
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.db-chat-search-bar input::placeholder {
+    color: #8696a0;
+}
+
+.dark-theme .db-chat-search-bar input {
+    background-color: #2a3942;
+    color: #e9edef;
+}
+
+
+/* Close search */
+
+.db-chat-search-bar button {
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #54656f;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.db-chat-search-bar button:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.dark-theme .db-chat-search-bar button {
+    color: #aebac1;
+}
+
+.dark-theme .db-chat-search-bar button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   CHAT MESSAGES AREA
+   ========================================================= */
+
+.db-chat-messages-area {
+    flex: 1;
+
+    width: 100%;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 18px 20px 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    position: relative;
+
+    background-color: #efeae2;
+
+    /*
+      Light WhatsApp-style subtle pattern
+    */
+    background-image:
+        radial-gradient(
+            rgba(100, 90, 80, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 18px 18px;
+
+    scroll-behavior: smooth;
+}
+
+.dark-theme .db-chat-messages-area {
+    background-color: #0b141a;
+
+    background-image:
+        radial-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+}
+
+
+/* =========================================================
+   MESSAGE AREA SCROLLBAR
+   ========================================================= */
+
+.db-chat-messages-area::-webkit-scrollbar {
+    width: 7px;
+}
+
+.db-chat-messages-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.db-chat-messages-area::-webkit-scrollbar-thumb {
+    background-color: rgba(84, 101, 111, 0.35);
+    border-radius: 10px;
+}
+
+.db-chat-messages-area::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(84, 101, 111, 0.55);
+}
+
+
+/* Firefox */
+
+.db-chat-messages-area {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(84, 101, 111, 0.35) transparent;
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.db-chat-welcome {
+    flex: 1;
+
+    min-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    color: #667781;
+}
+
+.dark-theme .db-chat-welcome {
+    color: #8696a0;
+}
+
+
+.db-welcome-emoji {
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(249, 115, 22, 0.10);
+
+    font-size: 26px;
+}
+
+.db-chat-welcome h3 {
+    margin: 0 0 5px;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.db-chat-welcome p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+.dark-theme .db-chat-welcome h3 {
+    color: #d1d7db;
+}
+
+.dark-theme .db-chat-welcome p {
+    color: #8696a0;
+}
+
+
+/* =========================================================
+   MESSAGE WRAPPER
+   ========================================================= */
+
+.db-msg-with-reply {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    margin: 0;
+}
+
+
+/* =========================================================
+   PROMO CARD
+   ========================================================= */
+
+.db-msg-with-reply > a {
+    width: min(330px, 80%);
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.10);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.db-msg-with-reply > a:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.db-msg-with-reply > a img {
+    width: 100%;
+    height: 350px; /* Height yahan se badh jayegi */
+    max-height: none;
+    display: block;
+    object-fit: cover;
+    /* object-position: center center;  */
+}
+
+
+/* =========================================================
+   TYPING INDICATOR
+   ========================================================= */
+
+.db-typing-indicator {
+    width: fit-content;
+
+    min-width: 52px;
+    height: 32px;
+
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 1px 1px rgba(0, 0, 0, 0.13);
+
+    flex-shrink: 0;
+}
+
+.dark-theme .db-typing-indicator {
+    background-color: #202c33;
+}
+
+
+.db-typing-dots {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+}
+
+
+.db-typing-dots span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background-color: #8696a0;
+
+    animation: dbTypingBounce 1.4s infinite ease-in-out both;
+}
+
+.db-typing-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.db-typing-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes dbTypingBounce {
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   REPLY PREVIEW
+   ========================================================= */
+
+/*
+   Your JSX currently uses inline styles for reply preview,
+   so no major CSS is required here.
+*/
+
+.db-chat-window-shell > div[style*="borderLeft"] {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FOCUS / ACCESSIBILITY
+   ========================================================= */
+
+.db-chat-back-btn:focus-visible,
+.db-action-icon-btn:focus-visible,
+.db-chat-search-bar button:focus-visible {
+    outline: 2px solid #f97316;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media screen and (max-width: 900px) {
+
+    .db-chat-header {
+        padding: 8px 10px;
+    }
+
+    .db-chat-messages-area {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .store-name-text {
+        max-width: 230px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    .db-chat-header {
+        height: 58px;
+        min-height: 58px;
+
+        padding: 7px 8px;
+    }
+
+    .db-chat-back-btn {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+
+        margin-right: 3px;
+    }
+
+    .db-chat-avatar {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+
+        font-size: 15px;
+    }
+
+    .db-chat-user-profile {
+        gap: 9px;
+    }
+
+    .db-chat-user-name {
+        font-size: 14px;
+    }
+
+    .store-name-text {
+        max-width: 190px;
+    }
+
+    .db-chat-messages-area {
+        padding: 10px 10px 90px;
+        gap: 5px;
+    }
+
+    .db-action-icon-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .db-chat-search-bar {
+        min-height: 46px;
+        padding: 6px 10px;
+    }
+
+    .db-dropdown-menu {
+        top: 42px;
+        right: 0;
+
+        width: 210px;
+    }
+
+    .db-menu-item {
+        min-height: 40px;
+        font-size: 12px;
+    }
+
+    .db-msg-with-reply > a {
+        width: min(300px, 82%);
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    .db-chat-header {
+        padding-left: 4px;
+        padding-right: 5px;
+    }
+
+    .db-chat-back-btn {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+    }
+
+    .db-chat-avatar {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+
+        font-size: 14px;
+    }
+
+    .db-chat-user-profile {
+        gap: 8px;
+    }
+
+    .db-chat-user-name {
+        font-size: 13px;
+    }
+
+    .store-name-text {
+        max-width: 145px;
+    }
+
+    /*
+      On very small screens, hide audio call
+      so header doesn't become crowded.
+    */
+
+    .db-chat-actions .db-action-icon-btn:first-child {
+        display: none;
+    }
+
+    .db-action-icon-btn {
+        width: 33px;
+        height: 33px;
+    }
+
+    .db-chat-messages-area {
+        padding: 8px 7px 85px;
+    }
+
+    .db-dropdown-menu {
+        width: 205px;
+        right: 0;
+    }
+
+    .db-msg-with-reply > a {
+        width: 85%;
+    }
+
+    .db-welcome-emoji {
+        width: 48px;
+        height: 48px;
+        font-size: 23px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media screen and (max-width: 360px) {
+
+    .store-name-text {
+        max-width: 115px;
+    }
+
+    .db-chat-user-name {
+        font-size: 12px;
+    }
+
+    .db-chat-avatar {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+    }
+
+    .db-chat-messages-area {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .db-chat-messages-area {
+        scroll-behavior: auto;
+    }
+
+    .db-typing-dots span {
+        animation: none;
+    }
+
+    .db-dropdown-menu {
+        animation: none;
+    }
+
+    .db-msg-with-reply > a {
+        transition: none;
+    }
+}
+
+/* ================================
+   PROMO LINK CARD
+================================ */
+
+.db-promo-link {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+
+    margin-bottom: 6px;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    text-decoration: none;
+    color: inherit;
+
+    cursor: pointer;
+}
+
+
+/* ================================
+   PROMO IMAGE
+================================ */
+
+/* Promo image */
+.db-promo-image {
+    width: 100%;
+    height: 300px; /* Yahan height thodi increase kar di gayi hai */
+
+    display: block;
+
+    object-fit: cover; /* Image area ko properly aur achhe se cover karega */
+    object-position: center;
+
+    background: #ffffff;
+}
+
+
+/* ================================
+   PROMO CONTENT
+================================ */
+
+.db-promo-content {
+    padding: 8px;
+    background: #f8fafc;
+}
+
+
+/* ================================
+   STOCK / VISIBILITY
+================================ */
+
+.db-promo-stock-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 4px;
+
+    flex-wrap: wrap;
+}
+
+.db-promo-in-stock,
+.db-promo-out-stock,
+.db-promo-visibility {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.db-promo-in-stock {
+    font-size: 10px;
+    font-weight: 600;
+    color: #059669;
+}
+
+.db-promo-out-stock {
+    font-size: 10px;
+    font-weight: 600;
+    color: #ef4444;
+}
+
+.db-promo-visibility {
+    font-size: 9px;
+    font-weight: 600;
+
+    padding: 2px 5px;
+
+    border-radius: 4px;
+
+    background: #f1f5f9;
+    color: #475569;
+}
+
+
+/* ================================
+   TITLE
+================================ */
+
+.db-promo-title {
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #0f172a;
+
+    margin: 0;
+}
+
+.db-promo-weight {
+    font-size: 10px;
+    font-weight: 400;
+
+    color: #94a3b8;
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+.db-promo-message {
+    font-size: 11px;
+
+    color: #475569;
+
+    margin: 2px 0 0;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* ================================
+   RATING
+================================ */
+
+.db-promo-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    font-size: 10px;
+
+    color: #64748b;
+
+    margin-top: 4px;
+}
+
+.db-promo-rating-value {
+    font-weight: 600;
+    color: #334155;
+}
+
+
+/* ================================
+   PRICE
+================================ */
+
+.db-promo-price-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 4px;
+}
+
+.db-promo-offer {
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #0f172a;
+}
+
+.db-promo-price {
+    font-size: 10px;
+
+    color: #94a3b8;
+
+    text-decoration: line-through;
+}
+
+.db-promo-discount {
+    font-size: 9px;
+    font-weight: 600;
+
+    padding: 2px 5px;
+
+    border-radius: 4px;
+
+    background: #ecfdf5;
+    color: #059669;
+}
+
+
+/* ================================
+   OPEN
+================================ */
+
+.db-promo-open {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    font-size: 10px;
+
+    margin-top: 6px;
+    margin-bottom: 0;
+
+    font-weight: 600;
+
+    color: #f97316;
+}
+
+
+/* ================================
+   DARK MODE
+================================ */
+
+.db-chat-window-shell.dark .db-promo-link {
+    background: #202c33;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.db-chat-window-shell.dark .db-promo-content {
+    background: #202c33;
+}
+
+.db-chat-window-shell.dark .db-promo-title,
+.db-chat-window-shell.dark .db-promo-offer {
+    color: #e9edef;
+}
+
+.db-chat-window-shell.dark .db-promo-message {
+    color: #aebac1;
+}
+
+.db-chat-window-shell.dark .db-promo-visibility {
+    background: #2a3942;
+    color: #d1d7db;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+    .db-promo-link {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .db-promo-link {
+        max-width: 280px;
+    }
+
+    .db-promo-image {
+        height: 170px; /* Mobile screen ke liye height */
+    }
+}
