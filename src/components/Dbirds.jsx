@@ -231,9 +231,9 @@ const Dbirds = () => {
 
       const res = await axios.post(`${API}/api/admin/auth/store-info`, payload, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
-        
+
       });
-     
+
       if (res.data?.success) {
         alert("Contact added successfully!");
         setContacts((prev) => [res.data.contact, ...prev]);
@@ -247,7 +247,7 @@ const Dbirds = () => {
           syncToPhone: false,
         });
       }
-       console.log("Shyam API - Save Contact Response:", res); 
+      console.log("Shyam API - Save Contact Response:", res);
     } catch (err) {
       console.error("Error adding contact:", err);
       alert("Failed to add contact.");
@@ -311,7 +311,18 @@ const Dbirds = () => {
           id: "store-info",
           name: storeData.name || "Store",
           phone: storeData.phone || "",
-          avatar: "",
+          avatar:
+            storeData.avatar ||
+            storeData.profileImage ||
+            storeData.photo ||
+            storeData.image ||
+            "",
+          profileImage:
+            storeData.profileImage ||
+            storeData.avatar ||
+            storeData.photo ||
+            storeData.image ||
+            "",
           bio: storeData.address || "Store Info",
           lastMessage: storeData.address || "No address available",
           lastMessageTime: "",
@@ -420,15 +431,7 @@ const Dbirds = () => {
         </div>
 
         <div className="db-rail-footer">
-          <button
-            type="button"
-            className="db-nav-item"
-            onClick={() => fileInputRef.current?.click()}
-            title="Upload Asset"
-            disabled={uploadingFile}
-          >
-            {uploadingFile ? <RefreshCw size={19} className="spin" /> : <ImageIcon size={20} />}
-          </button>
+
           <input
             type="file"
             ref={fileInputRef}
@@ -694,7 +697,15 @@ const Dbirds = () => {
                       onClick={() => handleSelectContact(contact)}
                     >
                       <div className="db-contact-avatar-wrap">
-                        {contact.name?.charAt(0)?.toUpperCase() || "C"}
+                        {contact.avatar || contact.profileImage ? (
+                          <img
+                            src={contact.avatar || contact.profileImage}
+                            alt={contact.name || "Shopkeeper"}
+                            className="db-contact-avatar-img"
+                          />
+                        ) : (
+                          contact.name?.charAt(0)?.toUpperCase() || "C"
+                        )}
 
                         {contact.isOnline === true && (
                           <span className="db-status-dot online" />

@@ -22,7 +22,7 @@ const BASE_URL =
     ? "http://localhost:5000"
     : "");
 
-const SUPPORT_BASE_URL = "https://shyamfoodbackend.onrender.com";
+const SUPPORT_BASE_URL = "https://backend.shyamnamkeenandbakers.online/api";
 
 const Message = ({
   message,
@@ -463,11 +463,7 @@ const getMediaUrl = (value) => {
       // --------------------------------------------
 
       default:
-        return (
-          <p className="msg-text">
-            {text}
-          </p>
-        );
+          return <span className="message-text">{text}</span>;
     }
   };
 

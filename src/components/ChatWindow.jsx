@@ -182,6 +182,8 @@ const ChatWindow = ({
     isDarkMode = false,
     theme,
 }) => {
+
+    const [expandedPromo, setExpandedPromo] = useState(null);
     const darkModeActive = isDarkMode || theme === "dark";
     const navigate = useNavigate();
     const stored = getStoredUser();
@@ -562,12 +564,13 @@ const ChatWindow = ({
 
     const rawProfileImg =
         activeContact?.avatar ||
+        activeContact?.profileImage ||
         activeContact?.profilePic ||
         activeContact?.profilePicture ||
         activeContact?.image ||
         activeContact?.logo ||
         activeContact?.photo;
-
+        
     const profileImageUrl = getImageUrl(rawProfileImg, API);
 
     const displayedMsgs =
@@ -592,7 +595,7 @@ const ChatWindow = ({
             {/* ================= CHAT HEADER ================= */}
             <div className="db-chat-header">
                 <button type="button" className="db-chat-back-btn" onClick={onBack} aria-label="Back">
-                    <ArrowLeft size={18} />
+                    <ArrowLeft size={20} />
                 </button>
                 <div
                     className="db-chat-user-profile"
@@ -624,7 +627,7 @@ const ChatWindow = ({
                             {typing ? (
                                 <span className="db-typing-status">typing...</span>
                             ) : isContactOnline ? (
-                                <span className="db-online-status">
+                                <span className="db-online-status"> <span className="db-online-status-chat">Bussiness Account</span>
                                     <span className="db-online-dot" />
                                     Online
                                 </span>
@@ -779,28 +782,34 @@ const ChatWindow = ({
                                 className="db-promo-link"
                             >
                                 {message.promo.image && (
-                                    <img
-                                        src={getImageUrl(message.promo.image)}
-                                        alt=""
-                                        className="db-promo-image"
-                                        onError={(e) => {
-                                            e.target.style.display = "none";
-                                        }}
-                                    />
+                                    <div className="db-promo-image-wrapper">
+                                        <img
+                                            src={getImageUrl(message.promo.image)}
+                                            alt={message.promo.title || "Product"}
+                                            className="db-promo-image"
+                                            onError={(e) => {
+                                                e.currentTarget.style.display = "none";
+                                            }}
+                                        />
+                                    </div>
                                 )}
 
                                 <div className="db-promo-content">
+
+                                    {/* STOCK + VISIBILITY */}
                                     {message.promo.type === "product" && (
                                         <div className="db-promo-stock-row">
                                             {message.promo.quantity === undefined ||
                                                 message.promo.quantity === null ||
                                                 message.promo.quantity > 0 ? (
                                                 <span className="db-promo-in-stock">
-                                                    <CheckCircle size={10} /> In Stock
+                                                    <CheckCircle size={10} />
+                                                    In Stock
                                                 </span>
                                             ) : (
                                                 <span className="db-promo-out-stock">
-                                                    <XCircle size={10} /> Out of Stock
+                                                    <XCircle size={10} />
+                                                    Out of Stock
                                                 </span>
                                             )}
 
@@ -820,6 +829,7 @@ const ChatWindow = ({
                                         </div>
                                     )}
 
+                                    {/* TITLE + WEIGHT */}
                                     <p className="db-promo-title">
                                         {message.promo.title}
 
@@ -832,15 +842,50 @@ const ChatWindow = ({
                                         )}
                                     </p>
 
-                                    <p className="db-promo-message">
-                                        {message.promo.message}
-                                    </p>
+                                    {/* MESSAGE + READ MORE */}
+                                    <div className="db-promo-message-wrapper">
+                                        <p
+                                            className={`db-promo-message ${expandedPromo === (message.id || message._id)
+                                                ? "expanded"
+                                                : ""
+                                                }`}
+                                        >
+                                            {message.promo.message}
+                                        </p>
 
+                                        {message.promo.message &&
+                                            message.promo.message.length > 120 && (
+                                                <button
+                                                    type="button"
+                                                    className="db-promo-read-more"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+
+                                                        const promoId =
+                                                            message.id || message._id;
+
+                                                        setExpandedPromo((prev) =>
+                                                            prev === promoId ? null : promoId
+                                                        );
+                                                    }}
+                                                >
+                                                    {expandedPromo ===
+                                                        (message.id || message._id)
+                                                        ? "Read less"
+                                                        : "Read more"}
+                                                </button>
+                                            )}
+                                    </div>
+
+                                    {/* RATING + REVIEWS + ORDERS */}
                                     {message.promo.type === "product" && (
                                         <>
                                             <div className="db-promo-rating">
                                                 <span className="db-promo-rating-value">
-                                                    {Number(message.promo.rating || 0).toFixed(1)}
+                                                    {Number(
+                                                        message.promo.rating || 0
+                                                    ).toFixed(1)}
                                                 </span>
 
                                                 <span>
@@ -854,16 +899,18 @@ const ChatWindow = ({
                                                 </span>
                                             </div>
 
+                                            {/* PRICE + OFFER + DISCOUNT */}
                                             <div className="db-promo-price-row">
                                                 <span className="db-promo-offer">
-                                                    ₹{message.promo.offer}
+                                                    <span className="db-promo-offer-r">₹</span>{message.promo.offer}
                                                 </span>
 
-                                                {message.promo.price > message.promo.offer && (
-                                                    <span className="db-promo-price">
-                                                        ₹{message.promo.price}
-                                                    </span>
-                                                )}
+                                                {message.promo.price >
+                                                    message.promo.offer && (
+                                                        <span className="db-promo-price">
+                                                            ₹{message.promo.price}
+                                                        </span>
+                                                    )}
 
                                                 {message.promo.off > 0 && (
                                                     <span className="db-promo-discount">
@@ -874,6 +921,7 @@ const ChatWindow = ({
                                         </>
                                     )}
 
+                                    {/* OPEN */}
                                     <p className="db-promo-open">
                                         <ExternalLink size={11} />
                                         Open

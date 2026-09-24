@@ -355,4 +355,15 @@
 .dark-theme .bubble:has(.media-with-caption) .msg-meta {
   background: rgba(0, 0, 0, 0.4);
   color: #fff !important;
+}.message-text {
+  display: inline;
+  color: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}.bubble-user .message-text {
+  color: #111827;
+}
+
+.bubble-other .message-text {
+  color: #111827;
 }

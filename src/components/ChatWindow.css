@@ -1,4 +1,3 @@
-
 /* =========================================================
    frontend/src/components/ChatWindow.css
    FINAL CSS FOR CURRENT ChatWindow.jsx
@@ -11,9 +10,8 @@
 
 .db-chat-window-shell {
     width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    flex: 1;
+    height: 100%;
+    flex: 1 1 auto;
     min-width: 0;
     min-height: 0;
 
@@ -164,13 +162,13 @@
     flex-shrink: 0;
 }
 
+
 .db-chat-avatar img {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
+    object-position: center;
     border-radius: 50%;
 }
 
@@ -210,7 +208,7 @@
     color: #1e293b;
 
     font-size: 15px;
-    line-height: 20px;
+    line-height: 15px;
     font-weight: 600;
 
     white-space: nowrap;
@@ -310,6 +308,12 @@
 
 .dark-theme .db-online-dot {
     background-color: #22c55e;
+}
+
+.db-online-status-chat {
+    color: black;
+    font-size: 11px;
+
 }
 
 
@@ -539,12 +543,12 @@
 
 /* Search icon */
 
-.db-chat-search-bar > svg {
+.db-chat-search-bar>svg {
     flex-shrink: 0;
     color: #667781;
 }
 
-.dark-theme .db-chat-search-bar > svg {
+.dark-theme .db-chat-search-bar>svg {
     color: #aebac1;
 }
 
@@ -622,47 +626,30 @@
    ========================================================= */
 
 .db-chat-messages-area {
-    flex: 1;
-
-    width: 100%;
+    flex: 1 1 auto;
     min-height: 0;
+    width: 100%;
 
     overflow-y: auto;
     overflow-x: hidden;
 
-    padding: 18px 20px 100px;
+    padding: 24px 20px 100px;
 
     display: flex;
     flex-direction: column;
-
     gap: 7px;
 
     position: relative;
 
-    background-color: #efeae2;
-
-    /*
-      Light WhatsApp-style subtle pattern
-    */
-    background-image:
-        radial-gradient(
-            rgba(100, 90, 80, 0.045) 1px,
-            transparent 1px
-        );
-
-    background-size: 18px 18px;
-
-    scroll-behavior: smooth;
+    background-color: #ffffff;
 }
 
 .dark-theme .db-chat-messages-area {
     background-color: #0b141a;
 
     background-image:
-        radial-gradient(
-            rgba(255, 255, 255, 0.025) 1px,
-            transparent 1px
-        );
+        radial-gradient(rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px);
 }
 
 
@@ -776,7 +763,7 @@
     display: flex;
     flex-direction: column;
 
-    position: relative;
+    /* position: relative; */
 
     margin: 0;
 }
@@ -786,7 +773,7 @@
    PROMO CARD
    ========================================================= */
 
-.db-msg-with-reply > a {
+.db-msg-with-reply>a {
     width: min(330px, 80%);
 
     display: block;
@@ -796,25 +783,27 @@
     border-radius: 10px;
 
     overflow: hidden;
-
+    /* 
     box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.10);
-
+        0 1px 2px rgba(0, 0, 0, 0.10); */
+    /* 
     transition:
         transform 0.15s ease,
-        box-shadow 0.15s ease;
+        box-shadow 0.15s ease; */
 }
 
-.db-msg-with-reply > a:hover {
+/* 
+.db-msg-with-reply>a:hover {
     transform: translateY(-1px);
 
     box-shadow:
         0 3px 8px rgba(0, 0, 0, 0.12);
-}
+} */
 
-.db-msg-with-reply > a img {
+.db-msg-with-reply>a img {
     width: 100%;
-    height: 350px; /* Height yahan se badh jayegi */
+    height: 350px;
+    /* Height yahan se badh jayegi */
     max-height: none;
     display: block;
     object-fit: cover;
@@ -881,6 +870,7 @@
 }
 
 @keyframes dbTypingBounce {
+
     0%,
     80%,
     100% {
@@ -902,7 +892,7 @@
    so no major CSS is required here.
 */
 
-.db-chat-window-shell > div[style*="borderLeft"] {
+.db-chat-window-shell>div[style*="borderLeft"] {
     flex-shrink: 0;
 }
 
@@ -962,11 +952,17 @@
     }
 
     .db-chat-avatar {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: transparent;
 
-        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
     .db-chat-user-profile {
@@ -1008,7 +1004,7 @@
         font-size: 12px;
     }
 
-    .db-msg-with-reply > a {
+    .db-msg-with-reply>a {
         width: min(300px, 82%);
     }
 }
@@ -1074,7 +1070,7 @@
         right: 0;
     }
 
-    .db-msg-with-reply > a {
+    .db-msg-with-reply>a {
         width: 85%;
     }
 
@@ -1131,7 +1127,7 @@
         animation: none;
     }
 
-    .db-msg-with-reply > a {
+    .db-msg-with-reply>a {
         transition: none;
     }
 }
@@ -1168,11 +1164,13 @@
 /* Promo image */
 .db-promo-image {
     width: 100%;
-    height: 300px; /* Yahan height thodi increase kar di gayi hai */
+    height: 300px;
+    /* Yahan height thodi increase kar di gayi hai */
 
     display: block;
 
-    object-fit: cover; /* Image area ko properly aur achhe se cover karega */
+    object-fit: cover;
+    /* Image area ko properly aur achhe se cover karega */
     object-position: center;
 
     background: #ffffff;
@@ -1182,10 +1180,16 @@
 /* ================================
    PROMO CONTENT
 ================================ */
+.db-promo-link {
+    border: none !important;
+    box-shadow: none !important;
+}
 
 .db-promo-content {
     padding: 8px;
-    background: #f8fafc;
+    background: rgba(234, 233, 233, 0.132);
+    border: none !important;
+    box-shadow: none !important;
 }
 
 
@@ -1212,7 +1216,7 @@
 }
 
 .db-promo-in-stock {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     color: #059669;
 }
@@ -1241,7 +1245,7 @@
 ================================ */
 
 .db-promo-title {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600;
 
     color: #0f172a;
@@ -1250,7 +1254,7 @@
 }
 
 .db-promo-weight {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 400;
 
     color: #94a3b8;
@@ -1261,20 +1265,60 @@
    MESSAGE
 ================================ */
 
+
+.db-promo-message-wrapper {
+    width: 100%;
+    margin-top: 2px;
+}
+
 .db-promo-message {
-    font-size: 11px;
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.45;
 
     color: #475569;
 
-    margin: 2px 0 0;
-
     display: -webkit-box;
-    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 
     overflow: hidden;
+
+    word-break: break-word;
 }
 
+.db-promo-message.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+/* =========================================================
+   READ MORE / READ LESS
+   ========================================================= */
+
+.db-promo-read-more {
+    display: inline-block;
+
+    margin: 3px 0 0;
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #f97316;
+
+    cursor: pointer;
+}
+
+.db-promo-read-more:hover {
+    text-decoration: underline;
+}
 
 /* ================================
    RATING
@@ -1285,7 +1329,7 @@
     align-items: center;
     gap: 4px;
 
-    font-size: 10px;
+    font-size: 12px;
 
     color: #64748b;
 
@@ -1305,38 +1349,72 @@
 .db-promo-price-row {
     display: flex;
     align-items: center;
-    gap: 6px;
-
-    margin-top: 4px;
+    gap: 8px;
+    margin-top: 6px;
+    min-height: 28px;
 }
 
+/* Offer price */
 .db-promo-offer {
-    font-size: 13px;
+    display: inline-flex;
+    align-items: baseline;
+
+    font-size: 30px;
     font-weight: 700;
-
-    color: #0f172a;
+    line-height: 1;
+    letter-spacing: -0.3px;
+    color: #212121;
+    white-space: nowrap;
 }
 
+/* ₹ symbol */
+.db-promo-offer-r {
+    display: inline-block;
+
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+    margin-right: 1px;
+}
+
+/* Original price */
 .db-promo-price {
-    font-size: 10px;
+    display: inline-flex;
+    /* align-items: center; */
 
-    color: #94a3b8;
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: 400;
+    line-height: 1;
 
+    color: #878787;
     text-decoration: line-through;
+    text-decoration-thickness: 1px;
+
+    white-space: nowrap;
 }
 
+/* Discount badge */
 .db-promo-discount {
-    font-size: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 21px;
+    padding: 0 7px;
+
+    border-radius: 3px;
+
+    font-size: 11px;
     font-weight: 600;
+    line-height: 1;
 
-    padding: 2px 5px;
+    background: #e8f5e9;
+    color: #008c45;
+    margin-top: 5px;
 
-    border-radius: 4px;
-
-    background: #ecfdf5;
-    color: #059669;
+    white-space: nowrap;
 }
-
 
 /* ================================
    OPEN
@@ -1347,9 +1425,9 @@
     align-items: center;
     gap: 4px;
 
-    font-size: 10px;
+    font-size: 15px;
 
-    margin-top: 6px;
+    margin-top: 8px;
     margin-bottom: 0;
 
     font-weight: 600;
@@ -1385,6 +1463,13 @@
     color: #d1d7db;
 }
 
+.dark-theme .db-promo-message {
+    color: #aebac1;
+}
+
+.dark-theme .db-promo-read-more {
+    color: #ff9f43;
+}
 
 /* ================================
    MOBILE
@@ -1402,6 +1487,7 @@
     }
 
     .db-promo-image {
-        height: 170px; /* Mobile screen ke liye height */
+        height: 170px;
+        /* Mobile screen ke liye height */
     }
 }
