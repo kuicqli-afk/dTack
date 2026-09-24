@@ -41,11 +41,11 @@ const API =
     (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
     (typeof process !== "undefined" && process.env?.REACT_APP_API_URL) ||
     (typeof window !== "undefined" && window.location.hostname === "localhost"
-        ? "http://localhost:5000"
+        ? "https://dtalkbackend.designerbrids.com/"
         : "");
 
 const SOCKET_URL = API;
-const SUPPORT_API = "https://shyamfoodbackend.onrender.com/api";
+const SUPPORT_API = "https://backend.shyamnamkeenandbakers.online/api";
 const SUPPORT_BASE = SUPPORT_API.replace("/api", "");
 const SUPPORT_NAME = "Shyam Food Support";
 const SUPPORT_PHONE = "";
@@ -570,7 +570,7 @@ const ChatWindow = ({
         activeContact?.image ||
         activeContact?.logo ||
         activeContact?.photo;
-        
+
     const profileImageUrl = getImageUrl(rawProfileImg, API);
 
     const displayedMsgs =

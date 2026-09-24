@@ -19,7 +19,7 @@ const BASE_URL =
     process.env?.REACT_APP_API_URL) ||
   (typeof window !== "undefined" &&
     window.location.hostname === "localhost"
-    ? "http://localhost:5000"
+    ? "https://dtalkbackend.designerbrids.com"
     : "");
 
 const SUPPORT_BASE_URL = "https://backend.shyamnamkeenandbakers.online/api";
@@ -84,9 +84,9 @@ const Message = ({
 
   const time = timestamp
     ? new Date(timestamp).toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      })
+      hour: "2-digit",
+      minute: "2-digit",
+    })
     : "";
 
   // --------------------------------------------------
@@ -135,39 +135,39 @@ const Message = ({
 
 
 
-const getMediaUrl = (value) => {
-  if (!value) return "";
+  const getMediaUrl = (value) => {
+    if (!value) return "";
 
-  if (typeof value === "object") {
-    value =
-      value.url ||
-      value.secure_url ||
-      value.path ||
-      value.fileUrl ||
-      value.imageUrl ||
-      value.mediaUrl ||
-      value.location ||
-      value.src ||
-      "";
-  }
+    if (typeof value === "object") {
+      value =
+        value.url ||
+        value.secure_url ||
+        value.path ||
+        value.fileUrl ||
+        value.imageUrl ||
+        value.mediaUrl ||
+        value.location ||
+        value.src ||
+        "";
+    }
 
-  if (!value) return "";
+    if (!value) return "";
 
-  const stringValue = String(value).trim();
+    const stringValue = String(value).trim();
 
-  if (
-    stringValue.startsWith("http://") ||
-    stringValue.startsWith("https://") ||
-    stringValue.startsWith("blob:") ||
-    stringValue.startsWith("data:")
-  ) {
-    return stringValue;
-  }
+    if (
+      stringValue.startsWith("http://") ||
+      stringValue.startsWith("https://") ||
+      stringValue.startsWith("blob:") ||
+      stringValue.startsWith("data:")
+    ) {
+      return stringValue;
+    }
 
-  return `${SUPPORT_BASE_URL}/${stringValue
-    .replace(/\\/g, "/")
-    .replace(/^\/+/, "")}`;
-};
+    return `${SUPPORT_BASE_URL}/${stringValue
+      .replace(/\\/g, "/")
+      .replace(/^\/+/, "")}`;
+  };
 
   // --------------------------------------------------
   // FIND IMAGE FROM ALL POSSIBLE FIELDS
@@ -175,15 +175,15 @@ const getMediaUrl = (value) => {
 
   const finalImageSource = resolveImageValue(
     url ||
-      imageUrl ||
-      directMediaUrl ||
-      image ||
-      message?.media ||
-      message?.file ||
-      message?.attachment ||
-      message?.fileUrl ||
-      message?.photo ||
-      message?.photoUrl
+    imageUrl ||
+    directMediaUrl ||
+    image ||
+    message?.media ||
+    message?.file ||
+    message?.attachment ||
+    message?.fileUrl ||
+    message?.photo ||
+    message?.photoUrl
   );
 
   const mediaUrl = getMediaUrl(finalImageSource);
@@ -463,7 +463,7 @@ const getMediaUrl = (value) => {
       // --------------------------------------------
 
       default:
-          return <span className="message-text">{text}</span>;
+        return <span className="message-text">{text}</span>;
     }
   };
 
@@ -473,19 +473,16 @@ const getMediaUrl = (value) => {
 
   return (
     <div
-      className={`msg ${
-        isMe ? "user-msg" : "other-msg"
-      } ${
-        isDarkMode ? "dark-theme" : ""
-      }`}
+      className={`msg ${isMe ? "user-msg" : "other-msg"
+        } ${isDarkMode ? "dark-theme" : ""
+        }`}
       ref={menuRef}
     >
       <div
-        className={`bubble ${
-          isMe
-            ? "bubble-user"
-            : "bubble-other"
-        }`}
+        className={`bubble ${isMe
+          ? "bubble-user"
+          : "bubble-other"
+          }`}
         onClick={() => {
           setShowMenu(!showMenu);
           setShowEmojiPicker(false);
@@ -504,9 +501,9 @@ const getMediaUrl = (value) => {
               {replyTo.text ||
                 (resolveImageValue(
                   replyTo.image ||
-                    replyTo.url ||
-                    replyTo.imageUrl ||
-                    replyTo.mediaUrl
+                  replyTo.url ||
+                  replyTo.imageUrl ||
+                  replyTo.mediaUrl
                 )
                   ? "📷 Photo"
                   : "") ||
