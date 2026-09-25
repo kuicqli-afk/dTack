@@ -931,7 +931,7 @@ const ChatWindow = ({
                         )}
 
                         <Message
-                            message={message}
+                            message={message.promo ? { ...message, text: "" } : message}
                             currentUserId={userId}
                             onReply={(msg) => setReplyingTo(msg)}
                             onDelete={handleDeleteMessage}
