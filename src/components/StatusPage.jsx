@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./StatusPage.css";
 
-const API = "http://localhost:5000";
+const API = "https://dtalkbusiness.designerbrids.com";
 
 const StatusPage = ({ userId, theme = "dark" }) => {
   const [feed, setFeed] = useState([]);

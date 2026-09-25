@@ -23,7 +23,7 @@ const Sidebar = ({ userId, userName, userPhone, userAvatar, selected, onSelect, 
     if (!window.confirm("Are you sure you want to delete this chat?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/chats/${chatId}`, {
+      await axios.delete(`https://dtalkbusiness.designerbrids.com/api/chats/${chatId}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       setContacts(prev => prev.filter(c => (c.id || c._id) !== chatId));
@@ -38,7 +38,7 @@ const Sidebar = ({ userId, userName, userPhone, userAvatar, selected, onSelect, 
     if (!window.confirm("Are you sure you want to clear messages?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.post(`http://localhost:5000/api/chats/${chatId}/clear`, {}, {
+      await axios.post(`https://dtalkbusiness.designerbrids.com/api/chats/${chatId}/clear`, {}, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       if (onClearChat) onClearChat(chatId);
@@ -137,7 +137,7 @@ const Sidebar = ({ userId, userName, userPhone, userAvatar, selected, onSelect, 
   const myAvatarUrl = localUserAvatar
     ? (localUserAvatar.startsWith('http') || localUserAvatar.startsWith('blob:') || localUserAvatar.startsWith('data:')
       ? localUserAvatar
-      : `http://localhost:5000${localUserAvatar}`)
+      : `https://dtalkbusiness.designerbrids.com/${localUserAvatar}`)
     : null;
 
   if (loading) {
@@ -213,7 +213,7 @@ const Sidebar = ({ userId, userName, userPhone, userAvatar, selected, onSelect, 
             const avatarUrl = rawAvatar
               ? (rawAvatar.startsWith('http') || rawAvatar.startsWith('blob:') || rawAvatar.startsWith('data:')
                 ? rawAvatar
-                : `http://localhost:5000${rawAvatar.startsWith('/') ? '' : '/'}${rawAvatar}`)
+                : `https://dtalkbusiness.designerbrids.com/${rawAvatar.startsWith('/') ? '' : '/'}${rawAvatar}`)
               : null;
 
             const chatId = c.id || c._id || index;

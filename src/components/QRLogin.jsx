@@ -12,7 +12,7 @@ const QRLogin = ({ onConnect }) => {
   useEffect(() => {
   console.log("📱 QRLogin mounted");
 
-  const socket = io("http://localhost:5000", {
+  const socket = io("https://dtalkbusiness.designerbrids.com/", {
     transports: ["websocket", "polling"],
   });
 

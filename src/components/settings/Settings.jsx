@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import "./Settings.css"; 
 
-const API = "http://localhost:5000";
+const API = "https://dtalkbusiness.designerbrids.com/";
 
 const SettingsContainer = ({ userId, onLogout, activeTab = "chats", setActiveTab }) => {
   const navigate = useNavigate();

@@ -13,7 +13,7 @@ const Login = () => {
     const [timer, setTimer] = useState(0);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
-    const API_URL = 'http://localhost:5000/api';
+    const API_URL = 'https://dtalkbusiness.designerbrids.com/api';
 
     useEffect(() => {
         if (step === 'otp') {

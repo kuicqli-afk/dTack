@@ -8,7 +8,7 @@ const API =
   (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
   (typeof process !== "undefined" && process.env?.REACT_APP_API_URL) ||
   (typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? "http://localhost:5000"
+    ? "https://dtalkbusiness.designerbrids.com/"
     : "");
 
 const ProfileSetup = ({ userId, onBack }) => {
@@ -67,11 +67,11 @@ const ProfileSetup = ({ userId, onBack }) => {
   const [tempAbout, setTempAbout] = useState("");
 
   // const currentUserId = userId || localStorage.getItem("userId") || "anonymous";
-  const currentUserId = 
-    userId || 
-    localStorage.getItem("userId") || 
-    localStorage.getItem("id") || 
-    localStorage.getItem("_id") || 
+  const currentUserId =
+    userId ||
+    localStorage.getItem("userId") ||
+    localStorage.getItem("id") ||
+    localStorage.getItem("_id") ||
     "anonymous";
 
   // Helper function to safely get the authentication token
@@ -85,12 +85,12 @@ const ProfileSetup = ({ userId, onBack }) => {
     const fetchProfile = async () => {
       try {
         const token = getAuthToken();
-        
+
         // NOTE: Agar aapke backend ka route /api/auth/profile hai, toh yahan change karein.
         // Agar backend token se user pehchan leta hai, toh userId URL se hatane ki zaroorat pad sakti hai.
         const response = await axios.get(`${API}/api/auth/profile/${currentUserId}`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
-          
+
         });
         // console.log('profile access');
 
@@ -111,8 +111,8 @@ const ProfileSetup = ({ userId, onBack }) => {
           if (profile.avatar) {
             const fullAvatar =
               profile.avatar.startsWith("http") ||
-              profile.avatar.startsWith("blob:") ||
-              profile.avatar.startsWith("data:")
+                profile.avatar.startsWith("blob:") ||
+                profile.avatar.startsWith("data:")
                 ? profile.avatar
                 : `${API}${profile.avatar.startsWith("/") ? "" : "/"}${profile.avatar}`;
             setPreviewUrl(fullAvatar);
@@ -139,13 +139,13 @@ const ProfileSetup = ({ userId, onBack }) => {
             if (parsed.avatar) {
               const fullAvatar =
                 parsed.avatar.startsWith("http") ||
-                parsed.avatar.startsWith("blob:") ||
-                parsed.avatar.startsWith("data:")
+                  parsed.avatar.startsWith("blob:") ||
+                  parsed.avatar.startsWith("data:")
                   ? parsed.avatar
                   : `${API}${parsed.avatar.startsWith("/") ? "" : "/"}${parsed.avatar}`;
               setPreviewUrl(fullAvatar);
             }
-          } catch (e) {}
+          } catch (e) { }
         }
       }
     };
@@ -220,7 +220,7 @@ const ProfileSetup = ({ userId, onBack }) => {
       };
 
       const token = getAuthToken();
-      const response = await axios.post(`${API}/api/auth/save-profile`, payload, {  
+      const response = await axios.post(`${API}/api/auth/save-profile`, payload, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 
