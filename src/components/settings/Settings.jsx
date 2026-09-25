@@ -19,8 +19,7 @@ import {
   ArrowLeft 
 } from "lucide-react";
 import "./Settings.css"; 
-
-const API = "https://dtalkbusiness.designerbrids.com/";
+const API = "https://dtalkbackend.designerbrids.com";
 
 const SettingsContainer = ({ userId, onLogout, activeTab = "chats", setActiveTab }) => {
   const navigate = useNavigate();

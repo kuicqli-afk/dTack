@@ -23,7 +23,7 @@ const Sidebar = ({ userId, userName, userPhone, userAvatar, selected, onSelect, 
     if (!window.confirm("Are you sure you want to delete this chat?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`https://dtalkbusiness.designerbrids.com/api/chats/${chatId}`, {
+      await axios.delete(`https://dtalkbackend.designerbrids.com/api/chats/${chatId}`,{
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       setContacts(prev => prev.filter(c => (c.id || c._id) !== chatId));

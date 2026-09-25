@@ -12,7 +12,7 @@ const QRLogin = ({ onConnect }) => {
   useEffect(() => {
   console.log("📱 QRLogin mounted");
 
-  const socket = io("https://dtalkbusiness.designerbrids.com/", {
+const socket = io("https://dtalkbackend.designerbrids.com", {
     transports: ["websocket", "polling"],
   });
 
