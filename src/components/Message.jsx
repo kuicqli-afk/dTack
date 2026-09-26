@@ -19,7 +19,7 @@ const BASE_URL =
     process.env?.REACT_APP_API_URL) ||
   (typeof window !== "undefined" &&
     window.location.hostname === "localhost"
-    ? "https://dtalkbackend.designerbrids.com"
+    ? "https://dtalkbackend.designerbirds.com/api"
     : "");
 
 const SUPPORT_BASE_URL = "https://backend.shyamnamkeenandbakers.online/api";

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
+import dTalkbussiness from "../assets/dtalk (1).png";
 
 const Login = () => {
     const [phone, setPhone] = useState('');
@@ -13,7 +14,7 @@ const Login = () => {
     const [timer, setTimer] = useState(0);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
-const API_URL = 'https://dtalkbackend.designerbrids.com/api';
+    const API_URL = 'https://dtalkbackend.designerbirds.com/api';
 
     useEffect(() => {
         if (step === 'otp') {
@@ -170,8 +171,14 @@ const API_URL = 'https://dtalkbackend.designerbrids.com/api';
             <div className="login-page">
                 <div className="login-box">
                     <div className="login-header">
-                        <span className="login-icon">⚡</span>
-                        <h1>Kuicqli Chat</h1>
+                        <span className="login-icon">
+                            <img
+                                src={dTalkbussiness}
+                                alt="dTalk"
+                                className="brand-logo-img"
+                            />
+                        </span>
+                        <h1>dtalk bussiness</h1>
                         <p>Enter your phone number to continue</p>
                     </div>
 
@@ -195,9 +202,13 @@ const API_URL = 'https://dtalkbackend.designerbrids.com/api';
                             {loading ? 'Sending OTP...' : 'Send OTP →'}
                         </button>
                     </form>
-
+                    <p className="login-hint">We'll send you a 4-digit OTP to verify your number</p>
                     <div className="login-footer">
-                        <p className="login-hint">We'll send you a 4-digit OTP to verify your number</p>
+
+
+                        <p className='login-footer-pw'>Terms and Condition | Privacy Policy</p>
+                        <p className='login-footer-pwe'>dtalkbusiness.designerbirds.com</p> <br />
+                        <p className='login-footer-pwe'> Powered by Designerbirds </p>
                     </div>
                 </div>
             </div>
@@ -211,7 +222,13 @@ const API_URL = 'https://dtalkbackend.designerbrids.com/api';
         <div className="login-page">
             <div className="login-box">
                 <div className="login-header">
-                    <span className="login-icon">⚡</span>
+                    <span className="login-icon">
+                        <img
+                            src={dTalkbussiness}
+                            alt="Dbirds Logo"
+                            className="brand-logo-img"
+                        />
+                    </span>
                     <h1>Enter OTP</h1>
                     <p>We sent a code to +91 {phone}</p>
                     <button
@@ -259,6 +276,13 @@ const API_URL = 'https://dtalkbackend.designerbrids.com/api';
                         >
                             Resend OTP {timer > 0 && `(${timer}s)`}
                         </button>
+                    </div>
+                    <div className="login-footer">
+
+
+                        <p className='login-footer-pw'>Terms and Condition | Privacy Policy</p>
+                        <p className='login-footer-pwe'>dtalkbusiness.designerbirds.com</p> <br />
+                        <p className='login-footer-pwe'> Powered by Designerbirds </p>
                     </div>
                 </form>
             </div>

@@ -81,9 +81,8 @@
 
 /* Image ki height aur width yahan se jitni marzi utni badi karein */
 .brand-logo-img {
-  width: 44px !important;
-  /* Agar aur bada chahiye toh 70px ya 80px kar sakte hain */
-  height: 44px !important;
+  width: 70px !important;
+  height: 70px !important;
   object-fit: contain !important;
   display: block !important;
   max-width: none !important;

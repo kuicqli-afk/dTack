@@ -7,19 +7,17 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #0b0f19;
+  background-color: white;
   padding: 16px;
-  color: #f9fafb;
+  color: black;
 }
 
 .login-box {
   width: 100%;
   max-width: 400px;
-  background: #111827;
-  border: 1px solid #1f2937;
   border-radius: 20px;
   padding: 36px 28px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 24px 48px rgba(83, 82, 82, 0.203);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -35,14 +33,14 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
+
 }
 
 .login-icon {
-  font-size: 32px;
-  width: 56px;
-  height: 56px;
+  font-size: 70px;
+  width: 76px;
+  height: 86px;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,7 +50,7 @@
 .login-header h1 {
   font-size: 24px;
   font-weight: 600;
-  color: #f9fafb;
+  color: black;
   margin: 0;
 }
 
@@ -65,7 +63,7 @@
 .edit-phone-btn {
   background: transparent;
   border: none;
-  color: #3b82f6;
+  color: red;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -73,10 +71,6 @@
   transition: color 0.2s ease;
 }
 
-.edit-phone-btn:hover {
-  color: #60a5fa;
-  text-decoration: underline;
-}
 
 /* =========================================================
    FORM & INPUTS
@@ -85,21 +79,21 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 28px;
 }
 
 .phone-input-wrapper {
   display: flex;
   align-items: center;
-  background: #0b0f19;
-  border: 1px solid #374151;
+  background: #f3f3f3fd;
+  border: 1px solid #7e7f8246;
   border-radius: 12px;
   padding: 4px 14px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .phone-input-wrapper:focus-within {
-  border-color: #3b82f6;
+  border-color: #bfc1c5;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
@@ -116,7 +110,7 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #f9fafb;
+  color: rgba(0, 0, 0, 0.63);
   font-size: 15px;
   padding: 10px 10px;
 }
@@ -131,26 +125,26 @@
 
 .otp-input-container {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: space-evenly;
+  gap: -12px;
 }
 
 .otp-input {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   text-align: center;
   font-size: 22px;
   font-weight: 600;
-  color: #f9fafb;
-  background: #0b0f19;
-  border: 1px solid #374151;
+  color: black;
+  background: #dfdfe15f;
+  border: 1px solid #a7a9ad5f;
   border-radius: 12px;
   outline: none;
   transition: all 0.2s ease;
 }
 
 .otp-input:focus {
-  border-color: #3b82f6;
+  border-color: #dcdee1;
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
@@ -160,11 +154,11 @@
 
 .login-form button[type="submit"] {
   width: 100%;
-  background: #3b82f6;
+  background: red;
   color: #ffffff;
   border: none;
   border-radius: 12px;
-  padding: 12px;
+  padding: 16px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -172,16 +166,13 @@
   margin-top: 4px;
 }
 
-.login-form button[type="submit"]:hover:not(:disabled) {
-  background: #2563eb;
-}
 
 .login-form button[type="submit"]:active:not(:disabled) {
   transform: scale(0.98);
 }
 
 .login-form button[type="submit"]:disabled {
-  background: #374151;
+  background: #c9cacd;
   cursor: not-allowed;
   opacity: 0.7;
 }
@@ -215,9 +206,9 @@
   transition: color 0.2s ease;
 }
 
-.resend-btn:hover:not(:disabled) {
+/* .resend-btn:hover:not(:disabled) {
   color: #f9fafb;
-}
+} */
 
 .resend-btn:disabled {
   color: #4b5563;
@@ -226,7 +217,9 @@
 
 .login-footer {
   text-align: center;
-  border-top: 1px solid #1f2937;
+  border-top: 1px solid #93969b81;
+  width: 300px;
+  margin-left: 20px;
   padding-top: 16px;
 }
 
@@ -234,4 +227,16 @@
   font-size: 13px;
   color: #6b7280;
   margin: 0;
+  text-align: center;
+}
+
+.login-footer-pw {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.login-footer-pwe {
+  margin-top: 7px;
+  font-size: 13px;
+  color: #6b7280;
 }

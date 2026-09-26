@@ -35,7 +35,9 @@ import "./Dbirds.css";
 const API =
   (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
   (typeof process !== "undefined" && process.env?.REACT_APP_API_URL) ||
-  "http://localhost:5000";
+  (typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://dtalkbackend.designerbirds.com/api");
 const formatWhatsAppDate = (dateInput) => {
   if (!dateInput) return "";
 
@@ -158,7 +160,7 @@ const Dbirds = () => {
       formData.append("file", file);
 
       const token = localStorage.getItem("token");
-      const res = await axios.post(`${API}/api/chat/upload`, formData, {
+      const res = await axios.post(`${API}/chat/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -188,7 +190,7 @@ const Dbirds = () => {
       formData.append("file", file);
 
       const token = localStorage.getItem("token");
-      const res = await axios.post(`${API}/api/chat/upload`, formData, {
+      const res = await axios.post(`${API}/chat/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -226,7 +228,7 @@ const Dbirds = () => {
         syncToPhone: newContactForm.syncToPhone,
       };
 
-      const res = await axios.post(`${API}/api/admin/auth/store-info`, payload, {
+      const res = await axios.post(`${API}/admin/auth/store-info`, payload, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
 
       });
@@ -295,7 +297,7 @@ const Dbirds = () => {
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
       // 1. Store info
-      const userResponse = await axios.get(`${API}/api/admin/auth/store-info`, { headers });
+      const userResponse = await axios.get(`${API}/admin/auth/store-info`, { headers });
       const storeData =
         userResponse.data?.store?.data ||
         userResponse.data?.store ||
@@ -329,7 +331,7 @@ const Dbirds = () => {
 
         // 2. Real contacts
         try {
-          const contactsResponse = await axios.get(`${API}/api/auth/contacts`, {
+          const contactsResponse = await axios.get(`${API}/auth/contacts`, {
             params: { userId: storedUserId },
             headers,
           });

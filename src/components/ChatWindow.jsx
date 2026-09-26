@@ -36,16 +36,17 @@ import Message from "./Message";
 import InputBox from "./InputBox";
 import CallModal from "./CallModel";
 import "./ChatWindow.css";
-
 const API =
     (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
     (typeof process !== "undefined" && process.env?.REACT_APP_API_URL) ||
-    (typeof window !== "undefined" && window.location.hostname === "localhost"
-        ? "https://dtalkbackend.designerbrids.com"
-        : "");
+    "https://dtalkbackend.designerbirds.com/api";
 
-const SOCKET_URL = API;
-const SUPPORT_API = "https://backend.shyamnamkeenandbakers.online/api";
+const SOCKET_URL =
+    (typeof import.meta !== "undefined" && import.meta.env?.VITE_SOCKET_URL) ||
+    (typeof process !== "undefined" && process.env?.REACT_APP_SOCKET_URL) ||
+    "https://dtalkbackend.designerbirds.com/api";
+
+const SUPPORT_API = API;
 const SUPPORT_BASE = SUPPORT_API.replace("/api", "");
 const SUPPORT_NAME = "Shyam Food Support";
 const SUPPORT_PHONE = "";
@@ -252,17 +253,23 @@ const ChatWindow = ({
         ...serverMsgs.filter((m) => new Date(m.timestamp).getTime() > clearedAt),
         ...localMsgs,
     ];
-
     const fetchMessages = useCallback(async () => {
         if (!userId) return;
+
         try {
             const res = await axios.get(
-                `${SUPPORT_API}/support/conversation/${userId}?markSeenBy=customer&customerPhone=${encodeURIComponent(customerPhone)}`
+                `${SUPPORT_API}/messages/history/${userId}`
             );
 
-            const mapped = (res.data.data || []).map((m) => toUiMessage(m, userId));
+            const mapped = (res.data.messages || []).map((m) =>
+                toUiMessage(m, userId)
+            );
+
             const sig = mapped
-                .map((m) => `${m.id}:${m.seen ? 1 : 0}:${m.url || ""}:${m.text || ""}`)
+                .map(
+                    (m) =>
+                        `${m.id}:${m.seen ? 1 : 0}:${m.url || ""}:${m.text || ""}`
+                )
                 .join("|");
 
             if (sig !== lastSigRef.current) {
@@ -270,7 +277,10 @@ const ChatWindow = ({
                 setServerMsgs(mapped);
             }
         } catch (error) {
-            console.error("Support fetch error:", error);
+            console.error(
+                "❌ Support fetch error:",
+                error.response?.data || error.message
+            );
         } finally {
             setLoading(false);
         }
@@ -294,8 +304,10 @@ const ChatWindow = ({
 
         const socket = io(SOCKET_URL, {
             reconnection: true,
-            reconnectionAttempts: 5,
-            transports: ["websocket", "polling"],
+            reconnectionAttempts: Infinity,
+            reconnectionDelay: 1000,
+            transports: ["polling", "websocket"],
+            withCredentials: true,
         });
         socketRef.current = socket;
 
@@ -343,23 +355,53 @@ const ChatWindow = ({
     }, [serverMsgs, localMsgs, clearedAt, typing]);
 
     const postToSupport = async ({ text = "", file = null }) => {
-        const data = new FormData();
-        data.append("userId", userId);
-        data.append("sender", "customer");
-        data.append("text", text);
-        data.append("customerName", customerName);
-        data.append("customerPhone", customerPhone);
-        if (file) data.append("image", file);
-        if (replyingTo) data.append("replyToId", replyingTo.id);
+        if (file) {
+            const data = new FormData();
 
-        // FIXED: this was axios.get(url, data) — a GET request never sends a
-        // body, so FormData (text/image/replyToId) was silently going nowhere.
-        // Sending a message or a photo could never have actually worked.
-        const res = await axios.post(`${SUPPORT_API}/support/send`, data, {
-            headers: { "Content-Type": "multipart/form-data" },
-        });
+            data.append("userId", userId);
+            data.append("sender", "customer");
+            data.append("text", text);
+            data.append("customerName", customerName);
+            data.append("customerPhone", customerPhone);
+            data.append("image", file);
+
+            if (replyingTo) {
+                data.append("replyToId", replyingTo.id);
+            }
+
+            const res = await axios.post(
+                `${SUPPORT_API}/messages/send`,
+                data
+            );
+
+            setReplyingTo(null);
+
+            return toUiMessage(res.data.data || res.data.message, userId);
+        }
+
+        const payload = {
+            sessionId: userId,
+            userId,
+            senderId: userId,
+            text,
+            senderType: "customer",
+        };
+
+        if (replyingTo) {
+            payload.replyToId = replyingTo.id;
+        }
+
+        const res = await axios.post(
+            `${SUPPORT_API}/messages/send`,
+            payload
+        );
+
         setReplyingTo(null);
-        return toUiMessage(res.data.data, userId);
+
+        return toUiMessage(
+            res.data.data || res.data.message,
+            userId
+        );
     };
 
     const failLocal = (tempId, text) => {
@@ -373,13 +415,47 @@ const ChatWindow = ({
     };
 
     const handleDeleteMessage = async (msgId) => {
-        try {
-            // Optional deletion logic
-        } catch (error) {
-            console.error("Failed to delete message on server:", error);
+        if (!msgId) {
+            console.error("❌ Delete failed: message ID missing");
+            return;
         }
-        setServerMsgs((prev) => prev.filter((m) => m.id !== msgId && m._id !== msgId));
-        setLocalMsgs((prev) => prev.filter((m) => m.id !== msgId && m._id !== msgId));
+
+        try {
+            console.log("🗑️ Deleting message:", msgId);
+
+            const response = await axios.delete(
+                `${SUPPORT_API}/messages/message/${msgId}`
+            );
+
+            console.log("✅ Delete response:", response.data);
+
+            setServerMsgs((prev) =>
+                prev.filter(
+                    (m) =>
+                        String(m.id) !== String(msgId) &&
+                        String(m._id) !== String(msgId)
+                )
+            );
+
+            setLocalMsgs((prev) =>
+                prev.filter(
+                    (m) =>
+                        String(m.id) !== String(msgId) &&
+                        String(m._id) !== String(msgId)
+                )
+            );
+        } catch (error) {
+            console.error(
+                "❌ Delete message failed:",
+                error.response?.data || error.message
+            );
+
+            alert(
+                error.response?.data?.message ||
+                error.response?.data?.error ||
+                "Message delete nahi ho saka, dobara try karein."
+            );
+        }
     };
 
     const sendMedia = useCallback(
